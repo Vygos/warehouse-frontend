@@ -48,21 +48,24 @@ class UserForm extends React.Component {
         })
     }
 
-    renderInput(campo) {
+    renderInput({
+        input,
+        label,
+        required,
+        meta: {error, touched}
+        }) {
         return (
             <div>
                 <TextField
-                    required={campo.required}
-                    label={campo.label}
-                    {...campo.input}
-                    {...campo}
-                    error={campo.meta.error && campo.meta.touched}
+                    required={required}
+                    label={label}
+                    {...input}
+                    error={error && touched}
                     fullWidth
                     >
                 </TextField>
                 {
-                    campo.meta.error && campo.meta.touched &&
-                    <FormHelperText error>{campo.meta.error}</FormHelperText>
+                    error && touched && <FormHelperText error>{error}</FormHelperText>
                 }
            </div>
         )
