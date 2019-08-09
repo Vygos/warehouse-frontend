@@ -52,6 +52,7 @@ class UserForm extends React.Component {
         input,
         label,
         required,
+        disabled,
         meta: {error, touched}
         }) {
         return (
@@ -61,6 +62,7 @@ class UserForm extends React.Component {
                     label={label}
                     {...input}
                     error={error && touched}
+                    disabled={disabled}
                     fullWidth
                     >
                 </TextField>
