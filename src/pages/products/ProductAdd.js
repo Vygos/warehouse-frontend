@@ -115,7 +115,6 @@ class ProductAdd extends React.Component{
    }
 
    render(){
-      console.log(this.state.openModal)
       return (
          <>
             <ProductForm title="Cadastro de Produtos" action="add" onSubmit={this.onSubmitToTable} initialValues={{empresa : this.state.empresa}} />

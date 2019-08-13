@@ -16,7 +16,7 @@ class ProductList extends React.Component{
     async componentDidMount(){
         await rest('').get('/responsavel/logado').then(response => {
             this.props.productList(response.data.empresa.idEmpresa);
-        }); 
+        });        
     }
 
     colunas = [
@@ -52,7 +52,10 @@ class ProductList extends React.Component{
         {
            tittle: 'Excluir',
            icon: 'delete_forever',
-           callback: (item,index) => this.props.productDelete(index)
+           callback: (item) => {
+                this.props.productDelete(item.idProduto)
+           }     
+               
         }
     ]
 

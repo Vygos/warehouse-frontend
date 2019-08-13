@@ -50,7 +50,7 @@ class ProductForm extends React.Component{
                    {children}
                </Select>    
                <FormControl>
-                    { touched && error && <FormHelperText>{error}</FormHelperText>}  
+                    { touched && error && <FormHelperText error>{error}</FormHelperText>}  
                 </FormControl>
             </>    
         );
@@ -203,6 +203,6 @@ const afterSubmitSuccess = (result, dispatch) => (dispatch(reset('productForm'))
 export default reduxForm({
     form: 'productForm',
     validate,
-    onSubmitSuccess: afterSubmitSuccess,
+    
     enableReinitialize :true
 })(ProductForm)
