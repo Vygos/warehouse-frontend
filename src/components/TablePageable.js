@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
 import _ from 'lodash';
 import MenuActionTable from '../components/MenuActionTable'
+import PropTypes from "prop-types";
 
 
 /**
@@ -43,7 +44,12 @@ import MenuActionTable from '../components/MenuActionTable'
 export class TablePageable extends React.Component {
 
 
-    state = {actions: null, anchorEl: null, api: {list: this.props.data}}
+    state = {
+        actions: null,
+        anchorEl: null,
+        api: {list: this.props.data},
+        page: 0
+    }
 
 
 
@@ -91,6 +97,10 @@ export class TablePageable extends React.Component {
         }
     }
 
+    handleChangePage = (event, page) =>{
+        console.log(page);
+        this.setState({page: page})
+    }
 
     render() {
         return (
@@ -109,8 +119,8 @@ export class TablePageable extends React.Component {
                     <TablePagination
                         rowsPerPageOptions={[5, 10, 25]}
                         component="div"
-                        count={10}
-                        page={0}
+                        count={this.props.columns.length}
+                        page={this.state.page}
                         rowsPerPage={5}
                         backIconButtonProps={{
                             'aria-label': 'Previous Page',
@@ -118,14 +128,19 @@ export class TablePageable extends React.Component {
                         nextIconButtonProps={{
                             'aria-label': 'Next Page',
                         }}
-                        onChangePage={() => ""}
+                        onChangePage={this.handleChangePage}
                         onChangeRowsPerPage={() => ""}
                         />
                 </Paper>
             </div>
         );
     }
+
 }
 
+TablePageable.propTypes = {
+    data: PropTypes.array.isRequired,
+    columns: PropTypes.array.isRequired
+}
 
 export default TablePageable;
