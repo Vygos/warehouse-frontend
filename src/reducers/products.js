@@ -6,11 +6,11 @@ export default (state = {}, action) =>{
             return {...state, status: action.payload };
         case PRODUCT_LIST:
             return {...state, ...action.payload};
-        case DELETE_FROM_STORE: 
+        case DELETE_FROM_STORE:
             return {
-               ...state, ...Object.values(state).filter(product => product.idProduto !== action.payload)
+               ...Object.values(state).filter(product => product.idProduto !== action.payload)
            };
-           
+
         default:
             return state;
     }

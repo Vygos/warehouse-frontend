@@ -16,7 +16,7 @@ class ProductList extends React.Component{
     async componentDidMount(){
         await rest('').get('/responsavel/logado').then(response => {
             this.props.productList(response.data.empresa.idEmpresa);
-        });        
+        });
     }
 
     colunas = [
@@ -40,7 +40,7 @@ class ProductList extends React.Component{
             tittle: "Setor",
             atributo: "setor.dsSetor"
         }
-       
+
     ];
 
     actions = [
@@ -54,8 +54,8 @@ class ProductList extends React.Component{
            icon: 'delete_forever',
            callback: (item) => {
                 this.props.productDelete(item.idProduto)
-           }     
-               
+           }
+
         }
     ]
 
@@ -69,32 +69,33 @@ class ProductList extends React.Component{
            return (
               <Modal title="Editar" open={openModal} onClose={this.closeModal}>
                     <ProductForm initialValues={item}/>
-              </Modal> 
+              </Modal>
            );
-           
+
         }
      }
 
     render(){
+        console.log("RENDER", this.props);
        return (
         <Container fixed >
             <Box boxShadow={3} id="container" pt={3} pb={4}>
-                <Container> 
-                
+                <Container>
+
                     <Typography variant="h6" gutterBottom>
                     <div>
                         Estoque
-                    </div>    
+                    </div>
                     </Typography>
-                    
+
                     <Box boxShadow={5}>
                         <TablePageable data={this.props.allProducts} columns={this.colunas} actions={this.actions}/>
                         {this.renderModal()}
                     </Box>
                 </Container>
             </Box>
-        </Container>    
-       ); 
+        </Container>
+       );
     }
 }
 
@@ -102,7 +103,8 @@ const mapStateToProps = (state) =>{
     return { allProducts: Object.values(state.products) };
 }
 export default connect(mapStateToProps,
-    {   productList, 
-        productDelete, 
-        productEdit 
+    {
+        productList,
+        productDelete,
+        productEdit
     })(ProductList);
