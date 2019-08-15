@@ -1,13 +1,30 @@
 import React from 'react';
 import ProductForm from '../../components/ProductForm';
+import { productEdit } from '../../actions/product';
+import { connect } from 'react-redux';
 
-const ProductEdit = () =>{
+class ProductEdit extends React.Component{
 
-    return (
+    state = { product : (this.props.product ? this.props.product: null)}
+
+    onFormEditSubmit = (product) =>{
+        this.props.productEdit(product); 
+        this.setState({ product }) 
+    }
+
+
+    render(){
+        return (
         
-        <ProductForm title="Edição de Produto" action="edit"/>
-    );
+            <ProductForm 
+                title="Edição de Produto" 
+                action="edit" 
+                initialValues={this.state.product}
+                onSubmit={this.onFormEditSubmit}
+            />
+        );
+    } 
 
 }
 
-export default ProductEdit;
+export default connect(null, { productEdit })(ProductEdit);

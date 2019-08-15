@@ -5,8 +5,11 @@ import { editFromCart } from '../../actions/product';
 
 class ProductCartEdit extends React.Component{
     
+    state = { product : (this.props.item ? this.props.item : null)}
+
     onSubmitForm = (values, id) =>{
         this.props.editFromCart(values, id);
+        this.setState({ product : values });
     }
 
     render(){
@@ -14,7 +17,7 @@ class ProductCartEdit extends React.Component{
             <ProductCartEditForm 
                 onSubmit={this.onSubmitForm} 
                 title="Editar" 
-                initialValues={this.props.item} 
+                initialValues={this.state.product} 
                 index={this.props.index}
             />
         );

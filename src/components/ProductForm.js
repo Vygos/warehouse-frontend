@@ -203,6 +203,6 @@ const afterSubmitSuccess = (result, dispatch) => (dispatch(reset('productForm'))
 export default reduxForm({
     form: 'productForm',
     validate,
-    
+    onSubmitSuccess: afterSubmitSuccess,
     enableReinitialize :true
 })(ProductForm)

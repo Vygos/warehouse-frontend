@@ -23,6 +23,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Domain from '@material-ui/icons/Domain';
+import FormatListNumbered from '@material-ui/icons/FormatListNumbered'
 import AddCircle from '@material-ui/icons/AddCircle'
 import Assignment from "@material-ui/icons/Assignment";
 import Build from '@material-ui/icons/Build'
@@ -172,6 +173,14 @@ export default function NavBar(props) {
                                         <Assignment />
                                     </ListItemIcon>
                                     <ListItemText  primary="Cadastrar Produto"/>
+                                </ListItem>
+                            </NavLink>
+                            <NavLink to="/products"style={{color: '#696f78', textDecoration: 'none'}} activeClassName={classes.routeActive}>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                     <FormatListNumbered />
+                                    </ListItemIcon>
+                                    <ListItemText  primary="Listar Produtos"/>
                                 </ListItem>
                             </NavLink>
                             <NavLink to="/company/add"style={{color: '#696f78', textDecoration: 'none'}} activeClassName={classes.routeActive}>

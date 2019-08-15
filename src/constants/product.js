@@ -5,3 +5,4 @@ export const DELETE_FROM_CART = "DELETE_FROM_CART";
 export const EDIT_FROM_CART = "EDIT_FROM_CART";
 export const PRODUCT_LIST = "PRODUCT_LIST";
 export const DELETE_FROM_STORE = "DELETE_FROM_STORE";
+export const PRODUCT_EDIT = "PRODUCT_EDIT";

@@ -6,7 +6,8 @@ import {
     DELETE_FROM_CART, 
     EDIT_FROM_CART,
     PRODUCT_LIST,
-    DELETE_FROM_STORE
+    DELETE_FROM_STORE,
+    PRODUCT_EDIT
 } 
 from '../constants/product';
 import {rest} from '../authentication/tokenConfig';
@@ -51,11 +52,12 @@ export const productDelete = (id) => async dispatch =>{
       dispatch({ type: DELETE_FROM_STORE, payload: id});  
 }     
 
-export const productEdit = async (id, product) =>{
+export const productEdit = (product) => async dispatch =>{
     try{
-        await rest('').patch(`/xpto/${id}`, ...product);
+        await rest('').patch('/products/', product);
+        dispatch({ type: PRODUCT_EDIT, payload: product});
     }catch(e){
-
+        alert("error")
     }
 } 
 
