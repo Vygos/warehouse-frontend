@@ -18,6 +18,7 @@ import EmpresaCadastro from "../pages/EmpresaCadastro";
 import UsuarioPermissao from '../pages/UsuarioPermissao'
 import ReduxToastr from 'react-redux-toastr'
 import EditarPermissao from "../pages/EditarPermissao";
+import ErrorPage404 from "../pages/ErrorPage404";
 
 class App extends React.Component{
 
@@ -48,6 +49,7 @@ class App extends React.Component{
           <Switch>
             <Route path="/login" exact component={Login} />
             <NavBar>
+              <PrivateRoute isAutenticado={this.props.isAutenticado.logado} path='*' exact component={ErrorPage404} />
               <PrivateRoute isAutenticado={this.props.isAutenticado.logado} path='/home' exact component={Home} />
               <PrivateRoute isAutenticado={this.props.isAutenticado.logado} path='/products/add' exact component={ProductAdd} />
               <PrivateRoute isAutenticado={this.props.isAutenticado.logado} path='/products/edit' exact component={ProductEdit} />
