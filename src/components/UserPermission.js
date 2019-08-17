@@ -3,7 +3,6 @@ import { Container, Box, TextField, Grid, Button, Icon } from '@material-ui/core
 import TablePageable from './TablePageable';
 import '../css/UserPermission.css';
 import history from '../history';
-import { rest } from '../authentication/tokenConfig';
 
 class UserPermission extends React.Component{
 
