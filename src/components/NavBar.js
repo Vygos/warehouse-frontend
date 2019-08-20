@@ -141,7 +141,7 @@ export default function NavBar(props) {
                                     <ListItemText primary="Cadastrar Usuario" />
                                 </ListItem>
                             </NavLink>
-                            <NavLink to="/user/permission" style={{color: '#696f78', textDecoration: 'none'}} activeClassName={classes.routeActive}>
+                            <NavLink to="/user/list" style={{color: '#696f78', textDecoration: 'none'}} activeClassName={classes.routeActive}>
                                 <ListItem button className={classes.nested}>
                                     <ListItemIcon>
                                         <VpnKey />
