@@ -8,7 +8,7 @@ class SearchData extends React.Component{
 
     limparForm() {
         this.setState({ nome: "" })
-        this.props.fetchResponsavel();
+        this.props.fetchAll();
     }
 
     render(){

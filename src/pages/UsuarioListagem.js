@@ -28,7 +28,7 @@ class UsuarioListagem extends React.Component{
                 <Container fixed>
                     <SearchData
                         buscarPorNome={this.buscarPorNome}
-                        fetchResponsavel={this.fetchResponsavel}
+                        fetchAll={this.fetchResponsavel}
                         title="Filtrar Responsavel"
                         />
                     <UserList data={this.state.responsavel} />

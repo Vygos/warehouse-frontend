@@ -4,26 +4,39 @@ import Box from '@material-ui/core/Box';
 import TablePageable from '../../components/TablePageable';
 import Modal from '../../components/Modal';
 import ProductEdit from '../../pages/products/ProductEdit';
-import SearchIcon from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
-import { productList, productDelete, productEdit } from '../../actions/product';
+import { productList, productDelete, productEdit, productSearch } from '../../actions/product';
 import { Container, Grid } from '@material-ui/core';
 import { rest } from '../../authentication/tokenConfig';
 import { TextField } from '@material-ui/core';
-import { Field, reduxForm, reset } from 'redux-form';
+import { reduxForm, reset } from 'redux-form';
+import SearchData from '../../components/SearchData';
 
 import '../../css/Lista.css';
 
 
 class ProductList extends React.Component{
-    state = { openModal: false, item: null}
+    state = { openModal: false, item: null, idEmpresa: null}
 
     async componentDidMount(){
+        await this.fetchIdEmpresa()
+        this.fetchAllProducts();
+    }
+
+
+    fetchIdEmpresa = async () =>{
         await rest('').get('/responsavel/logado').then(response => {
-            this.props.productList(response.data.empresa.idEmpresa);
+            this.setState({idEmpresa: response.data.empresa.idEmpresa })
         });
+    }
+
+    fetchAllProducts = () =>{
+        this.props.productList(this.state.idEmpresa);
+    }
+
+    fetchSearch = (nome) =>{
+        this.props.productSearch(nome)
     }
 
     colunas = [
@@ -102,35 +115,20 @@ class ProductList extends React.Component{
         );
     }   
 
-
-    onSubmitSearch = (form) =>{
-        console.log(form.search);
-    }
-
     render(){
+        console.log()
        return (
         <Container fixed >
             <Box boxShadow={3} id="container" pt={3} pb={4}>
                 <Container>
                     <Typography variant="h6" gutterBottom>
-                    <Grid container>
-                        <Grid item xs={9} sm={9}>
-                            Estoque
-                        </Grid>
-                        <Grid item xs={3} sm={3}>
-                        <form onSubmit={this.props.handleSubmit(this.onSubmitSearch)} noValidate autoComplete="off">
-                            <div id="search" >
-                                <Field 
-                                name="search"
-                                style={{ paddingLeft: "65px"}}
-                                fullWidth
-                                component={this.renderFieldInput}  
-                                />
-                                <Button id="icon" type="submit">
-                                    <SearchIcon />
-                                </Button>
-                            </div>   
-                        </form>                                        
+                    <Grid container> 
+                        <Grid item xs={12} sm={12}>
+                        <SearchData 
+                            title="Estoque"
+                            fetchAll={this.fetchAllProducts}   
+                            buscarPorNome={this.fetchSearch}
+                        />                                        
                         </Grid>
                     </Grid>
                     
@@ -162,5 +160,6 @@ export default reduxForm({
     {
         productList,
         productDelete,
-        productEdit
+        productEdit, 
+        productSearch
     })(ProductList));

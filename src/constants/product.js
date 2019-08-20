@@ -6,3 +6,4 @@ export const EDIT_FROM_CART = "EDIT_FROM_CART";
 export const PRODUCT_LIST = "PRODUCT_LIST";
 export const DELETE_FROM_STORE = "DELETE_FROM_STORE";
 export const PRODUCT_EDIT = "PRODUCT_EDIT";
+export const PRODUCT_SEARCH =  "PRODUCT_SEARCH";

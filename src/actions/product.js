@@ -7,7 +7,8 @@ import {
     EDIT_FROM_CART,
     PRODUCT_LIST,
     DELETE_FROM_STORE,
-    PRODUCT_EDIT
+    PRODUCT_EDIT,
+    PRODUCT_SEARCH
 } 
 from '../constants/product';
 import {rest} from '../authentication/tokenConfig';
@@ -61,3 +62,12 @@ export const productEdit = (product) => async dispatch =>{
     }
 } 
 
+export const productSearch = (name) => async dispatch =>{
+    try{
+        await rest('').get(`/products/buscar-nome/${name}`).then(response =>{
+            dispatch({ type: PRODUCT_SEARCH, payload: response.data});
+        });
+    }catch(e){
+        alert("error")
+    }
+}
