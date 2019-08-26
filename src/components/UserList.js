@@ -1,8 +1,8 @@
 import React from 'react';
 import TablePageable from './TablePageable';
-import '../css/UserPermission.css';
 import history from '../history';
 
+import '../css/UserList.css';
 class UserList extends React.Component{
 
     colunas = [

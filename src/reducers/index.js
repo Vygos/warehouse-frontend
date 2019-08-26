@@ -6,6 +6,7 @@ import productsCart from './products-cart';
 import products from './products'
 import company from './company';
 import {reducer as toastrReducer} from 'react-redux-toastr'
+import { fetchResponsavel } from './responsavel';
 
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   productsCart: productsCart,
   products:products,
   company: company,
-  toastr: toastrReducer
+  toastr: toastrReducer,
+  responsaveis: fetchResponsavel
 })
