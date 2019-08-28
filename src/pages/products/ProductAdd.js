@@ -18,7 +18,13 @@ import '../../css/Form.css';
 
 class ProductAdd extends React.Component{
 
-   state = { empresa: null , openModal: false, item: null, index:null}
+    state = {
+        empresa: null, openModal: false, item: null, index: null,
+        opcoesPaginacao: {
+            rowsPerPageOptions: [5, 10, 15],
+            count: 0,
+            onChangePage: this.onChangePage
+        }}
    async componentDidMount(){
       await rest('').get('/responsavel/logado').then(response =>{
          this.setState({ empresa : response.data.empresa})
@@ -101,16 +107,16 @@ class ProductAdd extends React.Component{
    closeModal = (openModal) =>{
       this.setState({ openModal });
    }
-   
+
    renderModal(){
       const { openModal, item, index } = this.state;
       if(openModal){
          return (
             <Modal title="Editar" open={openModal} onClose={this.closeModal}>
                <ProductCartEdit item={item} index={index}/>
-            </Modal> 
+            </Modal>
          );
-         
+
       }
    }
 

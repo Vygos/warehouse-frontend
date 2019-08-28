@@ -99,11 +99,11 @@ export class TablePageable extends React.Component {
     }
 
     handleChangePage = (event, page) =>{
-        console.log(page);
         this.setState({page: page})
     }
 
     render() {
+        const {opcoesPaginacao} = this.props;
         return (
             <div>
                 <Paper>
@@ -118,9 +118,9 @@ export class TablePageable extends React.Component {
                         </TableBody >
                     </Table>
                     <TablePagination
-                        rowsPerPageOptions={[5, 10, 25]}
+                        rowsPerPageOptions={opcoesPaginacao.rowsPerPageOptions}
                         component="div"
-                        count={this.props.columns.length}
+                        count={opcoesPaginacao.count}
                         page={this.state.page}
                         rowsPerPage={5}
                         backIconButtonProps={{
@@ -129,9 +129,9 @@ export class TablePageable extends React.Component {
                         nextIconButtonProps={{
                             'aria-label': 'Next Page',
                         }}
-                        onChangePage={this.handleChangePage}
+                        onChangePage={(event, page) => {opcoesPaginacao.onChangePage(event,page);this.setState({page: page})}}
                         onChangeRowsPerPage={() => ""}
-                        />
+                    />
                 </Paper>
             </div>
         );

@@ -7,13 +7,36 @@ import { fetchResponsavel, filtrarResponsavel } from '../actions/responsavel';
 
 class UsuarioListagem extends React.Component {
 
-    componentDidMount = async() => {
-        this.props.fetchResponsavel();
+    onChangePage = (event, page) => {
+        this.props.fetchResponsavel(page, {});
     }
 
-    buscarPorNome = async (nome) => {
-        this.props.filtrarResponsavel(nome);
+    state = {
+        totalElements: 0,
+        opcoesPaginacao: {
+            rowsPerPageOptions: [5, 10, 15],
+            count: 0,
+            onChangePage: this.onChangePage
+        }
     }
+
+
+    componentDidMount = () => {
+        this.props.fetchResponsavel(0,{noResponsavel: null});
+    }
+
+    componentDidUpdate = (props,state) =>{
+        if(this.state.opcoesPaginacao === state.opcoesPaginacao){
+            this.setState({
+                opcoesPaginacao: {
+                    rowsPerPageOptions: [5, 10, 15],
+                    count: this.props.responsaveis.totalElements,
+                    onChangePage: this.onChangePage
+                }
+            })
+        }
+    }
+
 
     render(){
         return (
@@ -25,7 +48,7 @@ class UsuarioListagem extends React.Component {
                         title="Filtrar Responsavel"
                     />
                     <br />
-                    <UserList data={this.props.responsaveis} />
+                    <UserList data={this.props.responsaveis.content} opcoesPaginacao={this.state.opcoesPaginacao}/>
                 </Container>
             </div>
         );

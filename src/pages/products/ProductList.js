@@ -17,7 +17,12 @@ import '../../css/Lista.css';
 
 
 class ProductList extends React.Component{
-    state = { openModal: false, item: null, idEmpresa: null}
+    state = { openModal: false, item: null, idEmpresa: null,  opcoesPaginacao: {
+            rowsPerPageOptions: [5, 10, 15],
+            count: 0,
+            onChangePage: this.onChangePage
+        }
+    }
 
     async componentDidMount(){
         await this.fetchIdEmpresa()
@@ -101,19 +106,19 @@ class ProductList extends React.Component{
         label,
         type,
         ...custom
-    }) => { 
+    }) => {
         return (
-          <> 
-          <TextField 
+          <>
+          <TextField
             required
-            placeholder="Buscar Produto..." 
+            placeholder="Buscar Produto..."
             {...input}
-            {...custom} 
-            
-          /> 
+            {...custom}
+
+          />
           </>
         );
-    }   
+    }
 
     render(){
         console.log()
@@ -122,20 +127,20 @@ class ProductList extends React.Component{
             <Box boxShadow={3} id="container" pt={3} pb={4}>
                 <Container>
                     <Typography variant="h6" gutterBottom>
-                    <Grid container> 
+                    <Grid container>
                         <Grid item xs={12} sm={12}>
-                        <SearchData 
+                        <SearchData
                             title="Estoque"
-                            fetchAll={this.fetchAllProducts}   
+                            fetchAll={this.fetchAllProducts}
                             buscarPorNome={this.fetchSearch}
-                        />                                        
+                        />
                         </Grid>
                     </Grid>
-                    
+
                     </Typography>
 
                     <Box boxShadow={5}>
-                        <TablePageable data={this.props.allProducts} columns={this.colunas} actions={this.actions}/>
+                        <TablePageable data={this.props.allProducts} columns={this.colunas} actions={this.actions} opcoesPaginacao={this.state.opcoesPaginacao}/>
                         {this.renderModal()}
                     </Box>
                 </Container>
@@ -160,6 +165,6 @@ export default reduxForm({
     {
         productList,
         productDelete,
-        productEdit, 
+        productEdit,
         productSearch
     })(ProductList));

@@ -38,7 +38,12 @@ class UserList extends React.Component{
         return(
             <div>
                 <div className="table">
-                    <TablePageable columns={this.colunas} data={this.props.data} actions={this.actions} />
+                    <TablePageable
+                        columns={this.colunas}
+                        data={this.props.data}
+                        actions={this.actions}
+                        opcoesPaginacao={this.props.opcoesPaginacao}
+                    />
                 </div>
             </div>
         )

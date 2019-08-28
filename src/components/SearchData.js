@@ -36,7 +36,7 @@ class SearchData extends React.Component{
                                     </Button>
                                 </div>
                                 <div className="button">
-                                    <Button variant="contained" color="primary" onClick={() => this.props.buscarPorNome(this.state.nome)}>
+                                    <Button variant="contained" color="primary" onClick={() => this.props.buscarPorNome(0,this.state.nome)}>
                                         <Icon>search</Icon>
                                         Pesquisar
                                     </Button>
