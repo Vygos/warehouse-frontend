@@ -17,6 +17,12 @@ import '../../css/Lista.css';
 
 
 class ProductList extends React.Component{
+
+
+    onChangePage = (event,page) =>{
+        this.props.productList(page, { noProduto: null });
+    }
+
     state = {
         openModal: false,
         item: null,
@@ -31,6 +37,18 @@ class ProductList extends React.Component{
     async componentDidMount(){
         await this.fetchIdEmpresa()
         this.fetchAllProducts();
+    }
+
+    componentDidUpdate(props,state){
+        if(state.opcoesPaginacao === this.state.opcoesPaginacao){
+            this.setState({
+                opcoesPaginacao: {
+                    rowsPerPageOptions: [5, 10, 15],
+                    count: this.props.allProducts.totalElements,
+                    onChangePage: this.onChangePage
+                }
+            })
+        }
     }
 
 
@@ -125,7 +143,6 @@ class ProductList extends React.Component{
     }
 
     render(){
-        console.log(this.props.allProducts)
        return (
         <Container fixed >
             <Box boxShadow={3} id="container" pt={3} pb={4}>

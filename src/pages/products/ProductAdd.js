@@ -97,7 +97,11 @@ class ProductAdd extends React.Component{
 
    renderProductList = productsCart =>{
          return (
-            <TablePageable data={productsCart} columns={this.colunas} actions={this.actions} />
+            <TablePageable
+                data={productsCart}
+                columns={this.colunas}
+                actions={this.actions}
+                opcoesPaginacao={this.state.opcoesPaginacao}/>
          );
    }
    onSubmitToTable = (values) =>{

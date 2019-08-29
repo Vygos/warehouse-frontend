@@ -63,6 +63,7 @@ export const productEdit = (product) => async dispatch =>{
 }
 
 export const productSearch = (page,name) => async dispatch =>{
+    console.log(name);
     try{
         const response = await rest('').post(`/products/company/consultar?page=${page}&size=5`, {noProduto: name})
             dispatch({ type: PRODUCT_SEARCH, payload: response.data});
