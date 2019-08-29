@@ -17,7 +17,11 @@ import '../../css/Lista.css';
 
 
 class ProductList extends React.Component{
-    state = { openModal: false, item: null, idEmpresa: null,  opcoesPaginacao: {
+    state = {
+        openModal: false,
+        item: null,
+        idEmpresa: null,
+        opcoesPaginacao: {
             rowsPerPageOptions: [5, 10, 15],
             count: 0,
             onChangePage: this.onChangePage
@@ -37,11 +41,11 @@ class ProductList extends React.Component{
     }
 
     fetchAllProducts = () =>{
-        this.props.productList(this.state.idEmpresa);
+        this.props.productList(0, {noProduto: null});
     }
 
-    fetchSearch = (nome) =>{
-        this.props.productSearch(nome)
+    fetchSearch = (page,nome) =>{
+        this.props.productSearch(page,nome)
     }
 
     colunas = [
@@ -121,7 +125,7 @@ class ProductList extends React.Component{
     }
 
     render(){
-        console.log()
+        console.log(this.props.allProducts)
        return (
         <Container fixed >
             <Box boxShadow={3} id="container" pt={3} pb={4}>
@@ -140,7 +144,11 @@ class ProductList extends React.Component{
                     </Typography>
 
                     <Box boxShadow={5}>
-                        <TablePageable data={this.props.allProducts} columns={this.colunas} actions={this.actions} opcoesPaginacao={this.state.opcoesPaginacao}/>
+                        <TablePageable
+                            data={this.props.allProducts.content}
+                            columns={this.colunas}
+                            actions={this.actions}
+                            opcoesPaginacao={this.state.opcoesPaginacao}/>
                         {this.renderModal()}
                     </Box>
                 </Container>
@@ -151,7 +159,7 @@ class ProductList extends React.Component{
 }
 
 const mapStateToProps = (state) =>{
-    return { allProducts: Object.values(state.products) };
+    return { allProducts: state.products };
 }
 
 const afterSubmitSuccess = (result, dispatch) => (dispatch(reset('searchForm')));
