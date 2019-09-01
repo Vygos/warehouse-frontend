@@ -62,7 +62,6 @@ class UserForm extends React.Component {
                     required={required}
                     label={label}
                     {...input}
-                    custom
                     error={error && touched}
                     disabled={disabled}
                     fullWidth
@@ -115,7 +114,6 @@ class UserForm extends React.Component {
     }
 
     render() {
-        console.log("INITIAL ", this.props);
         const { classes } = this.props;
         return (
         <div className={classes.div}>
