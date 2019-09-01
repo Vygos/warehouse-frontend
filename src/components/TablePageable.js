@@ -7,7 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
 import _ from 'lodash';
-import MenuActionTable from '../components/MenuActionTable'
+import MenuActionTable from './MenuActionTable'
 import PropTypes from "prop-types";
 
 

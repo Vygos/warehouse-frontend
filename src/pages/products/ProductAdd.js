@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
-import ProductCartEdit from '../products/ProductCartEdit';
+import ProductCartEdit from './ProductCartEdit';
 import {rest} from '../../authentication/tokenConfig';
 import { toastr } from 'react-redux-toastr';
 

@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TablePageable from '../../components/TablePageable';
 import Modal from '../../components/Modal';
-import ProductEdit from '../../pages/products/ProductEdit';
+import ProductEdit from './ProductEdit';
 
 import { connect } from 'react-redux';
 import { productList, productDelete, productEdit, productSearch } from '../../actions/product';

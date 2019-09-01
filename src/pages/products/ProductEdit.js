@@ -8,22 +8,22 @@ class ProductEdit extends React.Component{
     state = { product : (this.props.product ? this.props.product: null)}
 
     onFormEditSubmit = (product) =>{
-        this.props.productEdit(product); 
-        this.setState({ product }) 
+        this.props.productEdit(product);
+        this.setState({ product })
     }
 
 
     render(){
         return (
-        
-            <ProductForm 
-                title="Edição de Produto" 
-                action="edit" 
+
+            <ProductForm
+                title="Edição de Produto"
+                action="edit"
                 initialValues={this.state.product}
                 onSubmit={this.onFormEditSubmit}
             />
         );
-    } 
+    }
 
 }
 
